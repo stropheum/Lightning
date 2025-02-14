@@ -13,6 +13,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/stropheum/Lightning.git",
+    "accountId": "c19b42a8-0a39-4154-ba51-943022c84909"
+  }
+}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
   "associatedIndex": 0
@@ -95,6 +102,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
