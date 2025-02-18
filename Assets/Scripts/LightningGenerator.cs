@@ -10,8 +10,6 @@ public class LightningGenerator : MonoBehaviour
     private GraphicsBuffer _buffer;
     private Transform[] _idleNodes = new Transform[25];
 
-    private void Awake() { }
-
     private void OnDestroy()
     {
         _buffer?.Release();
@@ -59,6 +57,6 @@ public class LightningGenerator : MonoBehaviour
 
     private void UpdateVfx()
     {
-        foreach (Transform key in _effects.Keys) _effects[key].SetVector3("Target", key.position);
+        foreach (Transform key in _effects.Keys) { _effects[key].SetVector3("Target", key.position); }
     }
 }

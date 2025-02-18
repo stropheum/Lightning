@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: 
+  m_Name: vfx_lightning_noise_magnitude_range
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -86,9 +86,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -1534
+    x: -1570
     y: 2484
-    width: 902
+    width: 938
     height: 113
 --- !u!114 &114350483966674978
 MonoBehaviour:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -1357, y: 2521.5}
+  m_UIPosition: {x: -1357, y: 2492}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -1175, y: 2483.5}
+  m_UIPosition: {x: -1152, y: 2484}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -610,7 +610,7 @@ MonoBehaviour:
       inputSlot: {fileID: 114350483966674984}
     - outputSlot: {fileID: 114350483966674998}
       inputSlot: {fileID: 114350483966674979}
-    position: {x: -1534, y: 2528.5}
+    position: {x: -1570, y: 2529}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0

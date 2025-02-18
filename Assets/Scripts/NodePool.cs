@@ -6,11 +6,14 @@ using UnityEngine.VFX;
 [RequireComponent(typeof(LightningGenerator))]
 public class NodePool : MonoBehaviour
 {
+    [SerializeField] private GameObject _nodePrefab; 
     [SerializeField] private int _nodeCount = 25;
+    [SerializeField] private LayerMask _environmentLayerMask;
+    [SerializeField] private float _nodeAngleRange = 30f;
     
     private LightningGenerator _lightningGenerator;
     private VisualEffectAsset _vfxAsset;
-    private IObjectPool<Transform> _pool;
+    private IObjectPool<GameObject> _pool;
 
     private void Awake()
     {
@@ -19,9 +22,8 @@ public class NodePool : MonoBehaviour
 
     private void Start()
     {
-        
         _vfxAsset = _lightningGenerator.LightningEffectAsset;
-        _pool = new ObjectPool<Transform>(
+        _pool = new ObjectPool<GameObject>(
             OnNodeCreate,
             OnNodeGet,
             OnNodeRelease,
@@ -34,46 +36,64 @@ public class NodePool : MonoBehaviour
         PrewarmPool();
     }
 
+    private void Update()
+    {
+        UpdateIdleNodes();
+    }
+
     private void PrewarmPool()
     {
-        Stack<Transform> objs = new();
+        Stack<GameObject> nodes = new();
         for (int i = 0; i < _nodeCount; i++)
         {
-            objs.Push(_pool.Get());
+            GameObject node = _pool.Get();
+            nodes.Push(node);
         }
         
         for (int i = 0; i < _nodeCount; i++)
         {
-            _pool.Release(objs.Pop());            
+            _pool.Release(nodes.Pop());            
         }
     }
 
 
-    private Transform OnNodeCreate()
+    private GameObject OnNodeCreate()
     {
-        var obj = new GameObject("VFX_Pool_Instance");
-        obj.transform.SetParent(_lightningGenerator.transform);
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localRotation = Quaternion.identity;
+        GameObject node = Instantiate(_nodePrefab, transform, true);
+        node.transform.localPosition = Vector3.zero;
+        node.transform.localRotation = Quaternion.identity;
 
-        var vfxComponent = obj.AddComponent<VisualEffect>();
-        vfxComponent.visualEffectAsset = _vfxAsset;
-        vfxComponent.SetVector3("Target", Vector3.zero);
-        return vfxComponent.transform;
+        Vector3 randomDirection = GetRandomDirectionInCone(Vector3.down, _nodeAngleRange);
+        if (Physics.Raycast(transform.position, randomDirection, out RaycastHit hit, Mathf.Infinity, layerMask: _environmentLayerMask))
+        {
+            node.transform.position = hit.point;
+        }
+        
+        return node;
     }
 
-    private void OnNodeGet(Transform obj)
+    private void OnNodeGet(GameObject node)
     {
-        obj.gameObject.SetActive(true);
+        node.gameObject.SetActive(true);
     }
 
-    private void OnNodeRelease(Transform obj)
+    private void OnNodeRelease(GameObject node)
     {
-        // Would normally turn off but we want idle functionality
     }
 
-    private void OnNodeDestroy(Transform obj)
+    private void OnNodeDestroy(GameObject node)
     {
-        Destroy(obj); // don't think we'll be doing this but whatevs
+        Destroy(node);
+    }
+    
+    private Vector3 GetRandomDirectionInCone(Vector3 baseDirection, float maxAngle)
+    {
+        Quaternion randomRotation = Quaternion.Euler(Random.Range(-maxAngle, maxAngle), Random.Range(0f, 360f), 0);
+        return randomRotation * baseDirection;
+    }
+    
+    private void UpdateIdleNodes()
+    {
+        // TODO: need to spawn the vfx instances seaprately, have idles nodes, swap collision layers so idle nodes connect to those instead
     }
 }

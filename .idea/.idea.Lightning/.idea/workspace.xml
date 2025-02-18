@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8e2f4e3-5e28-4f36-93b9-f045769abae5" name="Changes" comment="got basic lightning working">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NodePool.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NodePool.cs.meta" afterDir="false" />
+    <list default="true" id="b8e2f4e3-5e28-4f36-93b9-f045769abae5" name="Changes" comment="corrected the idle node base logic">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lightning/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lightning/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/SkyandFogSettingsProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SkyandFogSettingsProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TutorialInfo/Scripts/Readme.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TutorialInfo/Scripts/Readme.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ProBuilder Data/Default Color Palette.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProBuilder Data/Default Color Palette.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LightningGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LightningGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NodePool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NodePool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vfx/vfx_lightning.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vfx/vfx_lightning.vfx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/vfx_lightning_noise_magnitude_range.vfxoperator" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/vfx_lightning_noise_magnitude_range.vfxoperator" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,21 +58,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="E:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Unity.exe" />
@@ -102,13 +103,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3968">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="3968" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -125,7 +128,8 @@
       <option name="presentableId" value="Default" />
       <updated>1739496228411</updated>
       <workItem from="1739496240747" duration="5278000" />
-      <workItem from="1739639061956" duration="13884000" />
+      <workItem from="1739639061956" duration="14727000" />
+      <workItem from="1739849430314" duration="5359000" />
     </task>
     <task id="LOCAL-00001" summary="add unversioned files">
       <option name="closed" value="true" />
@@ -143,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739497491293</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="got basic lightning working">
+      <option name="closed" value="true" />
+      <created>1739672958652</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739672958652</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +174,26 @@
     <MESSAGE value="add unversioned files" />
     <MESSAGE value="ws" />
     <MESSAGE value="got basic lightning working" />
-    <option name="LAST_COMMIT_MESSAGE" value="got basic lightning working" />
+    <MESSAGE value="corrected the idle node base logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected the idle node base logic" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/NodePool.cs</url>
+          <line>61</line>
+          <properties documentPath="E:\Users\strop\Documents\GitHub\Lightning\Assets\Scripts\NodePool.cs" containingFunctionPresentation="Method 'OnNodeCreate'">
+            <startOffsets>
+              <option value="1474" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1534" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
